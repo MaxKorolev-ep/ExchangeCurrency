@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ExchangeCurrency</string>
+    <string name="refresh">Обновить</string>
+    <string name="count">Расчитать</string>
+
+    <string name="currency_char_code_string">Koд</string>
+    <string name="currency_name_string">Наименование</string>
+    <string name="currency_nominal_string">Номинал</string>
+    <string name="currency_value_string">Значение</string>
+    <string name="editHint">Введите цифры</string>
+    <string name="valHint">Результат</string>
+</resources>
