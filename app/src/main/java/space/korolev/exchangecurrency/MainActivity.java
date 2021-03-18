@@ -4,6 +4,7 @@ package space.korolev.exchangecurrency;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String URL = "http://www.cbr.ru/scripts/XML_daily.asp";
     // listView для отображения списка валют
+ //   CountDownTimer countDownTimer ;
     private ListView listView;
     private TextView tv_currency;
     private EditText tv_setcur;
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "XML error");
                 e.printStackTrace();
             }
+            new onRefreshTimer(120000,1000);
             return currencyList;
         }
 
@@ -108,4 +111,29 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(currencyListAdapter);
         }
     }
+
+    private class onRefreshTimer extends CountDownTimer {
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public onRefreshTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            new DownloadXmlTask().execute(URL);
+        }
+    }
+
 }
