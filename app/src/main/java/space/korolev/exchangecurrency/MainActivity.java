@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText tv_setcur;
     private int itempos = 0;
     View oldV;
+   public Toast toast;
     private String strFormatVal;
     public String[] getItemObjects = {"", "", "", ""};
     // адаптер для кастомизированного списка объектов Currency
     public CurrencyListAdapter currencyListAdapter;
+    public onRefreshTimer refreshTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         tv_setcur = findViewById(R.id.tv_setcur);
         // создание listView для отображения списка
         listView = (ListView) findViewById(R.id.listView);
-
+        //создание таймера
+        refreshTimer = new onRefreshTimer(120000,1000);
         // создание адаптера
         currencyListAdapter = new CurrencyListAdapter(this);
         // используется AsyncTask, чтобы загрузить XML и вывести список валют
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 itempos = position;
                 if (oldV!=null) oldV.setBackgroundColor(getResources().getColor(R.color.white));
-                view.setBackgroundColor(getResources().getColor(R.color.teal_700));
+                view.setBackgroundColor(getResources().getColor(R.color.focuslist));
                 oldV = view;
 
             }
@@ -100,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "XML error");
                 e.printStackTrace();
             }
-            new onRefreshTimer(120000,1000);
+            refreshTimer.cancel();
+            refreshTimer.start();
             return currencyList;
         }
 
@@ -133,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             new DownloadXmlTask().execute(URL);
+            toast = Toast.makeText(getBaseContext(),"Данные обновлены", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
