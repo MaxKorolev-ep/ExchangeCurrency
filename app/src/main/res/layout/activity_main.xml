@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
+    android:background="@color/itemMain"
     android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context="space.korolev.exchangecurrency.MainActivity">
 
 
@@ -16,7 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_weight="1"></ListView>
+        android:layout_weight="0.3"
+        android:background="#FFFFFF">
+
+    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,9 +33,12 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=""
+            android:hint="@string/editHint"
             android:inputType="numberDecimal"
-            android:hint="@string/editHint"/>
+            android:text=""
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/count"
@@ -45,6 +53,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -52,8 +61,12 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:padding="4dp"
+            android:hint="@string/valHint"
             android:text=""
-            android:hint="@string/valHint"/>
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/refresh"
@@ -64,6 +77,23 @@
             android:textColor="@color/white" />
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adBanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-7854454016318468/3756554594"></com.google.android.gms.ads.AdView>
     </LinearLayout>
 
 </LinearLayout>

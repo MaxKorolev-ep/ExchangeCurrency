@@ -16,12 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private AdView mAdView;
 
     final String LOG_TAG = "myLogs";
 
@@ -54,6 +62,18 @@ public class MainActivity extends AppCompatActivity {
         currencyListAdapter = new CurrencyListAdapter(this);
         // используется AsyncTask, чтобы загрузить XML и вывести список валют
         new DownloadXmlTask().execute(URL);
+        //Рекламный баннер
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adBanner);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        //Рекламный баннер
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -61,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 itempos = position;
-                if (oldV!=null) oldV.setBackgroundColor(getResources().getColor(R.color.white));
+                if (oldV!=null) oldV.setBackground(getResources().getDrawable(R.drawable.itemborder));
                 view.setBackgroundColor(getResources().getColor(R.color.focuslist));
                 oldV = view;
 

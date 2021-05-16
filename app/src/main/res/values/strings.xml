@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ExchangeCurrency</string>
+    <string name="app_name">Currency Viewer</string>
     <string name="refresh">Обновить</string>
     <string name="count">Расчитать</string>
 

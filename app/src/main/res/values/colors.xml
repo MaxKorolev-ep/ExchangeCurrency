@@ -4,8 +4,12 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="focuslist">#99D8D2</color>
+    <color name="focuslist">#2A3937</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#7C7B7B</color>
+    <color name="itemMain">#F5140E0E</color>
+    <color name="itemMain90">#E6140E0E</color>
+    <color name="yellow60">#99D3C231</color>
 </resources>
